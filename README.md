@@ -6,7 +6,7 @@
 Welcome to **Tagging**, a small library that makes it easy to create *type-safe tags* in Swift.
 Categorization are often very useful for our models, so leveraging the compiler to ensure that they're used in a correct manner can go a long way to making the model layer of an app or system more robust.
 
-This library is **strongly** inspired by [JohnSundell](https://github.com/JohnSundell)/[🆔 Identity](https://github.com/JohnSundell/Identity) and [mbleigh](https://github.com/mbleigh)/[acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on), for theoretical information, check out *["Type-safe identifiers in Swift"](https://www.swiftbysundell.com/posts/type-safe-identifiers-in-swift)* on [Swift by Sundell](https://www.swiftbysundell.com).
+This library is **strongly** inspired by [JohnSundell](https://github.com/JohnSundell)/[🆔entity](https://github.com/JohnSundell/Identity) and [mbleigh](https://github.com/mbleigh)/[acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on), for theoretical information, check out *["Type-safe identifiers in Swift"](https://www.swiftbysundell.com/posts/type-safe-identifiers-in-swift)* on [Swift by Sundell](https://www.swiftbysundell.com).
 
 ## Making types taggable
 
@@ -130,7 +130,7 @@ taggableCollection.tagged(with: taggable.tags, match: .none)
 
 ## Installation
 
-Since Tagging is implemented within a [single file](https://github.com/alexruperez/Tagging/blob/master/Tagging/Tagging.swift)!, the easiest way to use it is to simply drag and drop it into your Xcode project.
+Since Tagging is implemented within a [single file](https://github.com/alexruperez/Tagging/blob/master/Sources/Tagging/Tagging.swift)!, the easiest way to use it is to simply drag and drop it into your Xcode project.
 
 But if you wish to use a dependency manager, you can use the [Swift Package Manager](https://github.com/apple/swift-package-manager) by declaring Tagging as a dependency in your `Package.swift` file:
 
@@ -144,7 +144,7 @@ But if you wish to use a dependency manager, you can use the [Swift Package Mana
 
 Tagging is developed completely in the open, and your contributions are more than welcome.
 
-Before you start using Tagging in any of your projects, it’s highly recommended that you spend a few minutes familiarizing yourself with its documentation and internal implementation (it all fits [in a single file](https://github.com/alexruperez/Tagging/blob/master/Tagging/Tagging.swift)!), so that you’ll be ready to tackle any issues or edge cases that you might encounter.
+Before you start using Tagging in any of your projects, it’s highly recommended that you spend a few minutes familiarizing yourself with its documentation and internal implementation (it all fits [in a single file](https://github.com/alexruperez/Tagging/blob/master/Sources/Tagging/Tagging.swift)!), so that you’ll be ready to tackle any issues or edge cases that you might encounter.
 
 To learn more about the principles used to implement Tagging, check out *["Type-safe identifiers in Swift"](https://www.swiftbysundell.com/posts/type-safe-identifiers-in-swift)* on [Swift by Sundell](https://www.swiftbysundell.com).
 
