@@ -1,6 +1,9 @@
 MIT License
 
-Copyright (c) 2019 Alex Rupérez
+Based on John Sundell's Identity library, following his LICENSE file.
+https://github.com/JohnSundell/Identity/blob/master/LICENSE
+
+Copyright (c) 2019 John Sundell & Alex Rupérez
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

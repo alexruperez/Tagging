@@ -3,83 +3,55 @@
 [![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://swift.org)
 [![Swift Package Manager Compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
 
-Welcome to **Tagging**, a small library that makes it easy to create *type-safe tags* in Swift.
-Categorization are often very useful for our models, so leveraging the compiler to ensure that they're used in a correct manner can go a long way to making the model layer of an app or system more robust.
+**Tagging** is a library that makes it easy to create *type-safe tags* in Swift.
 
-This library is **strongly** inspired by [JohnSundell](https://github.com/JohnSundell)/[🆔entity](https://github.com/JohnSundell/Identity) and [mbleigh](https://github.com/mbleigh)/[acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on), for theoretical information, check out *["Type-safe identifiers in Swift"](https://www.swiftbysundell.com/posts/type-safe-identifiers-in-swift)* on [Swift by Sundell](https://www.swiftbysundell.com).
+Categorization is sometimes necessary in our models, so the compiler should be used to help us avoid mistakes.
 
-## Making types taggable
+This library extends [JohnSundell](https://github.com/JohnSundell)/[Identity](https://github.com/JohnSundell/Identity) and is also inspired by [mbleigh](https://github.com/mbleigh)/[acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on).
 
-All you have to do to use Tagging is to make a model conform to `Taggable`, and give it an `tags` property, like this:
+## 🐒 Usage
+
+### The Taggable Protocol
+
+Just conform `Taggable` protocol, and add a `tags` property:
 
 ```swift
-struct Article: Taggable {
+struct Model: Taggable {
     let tags: [Tag<Article>]
-    let title: String
 }
 ```
 
-And just like that, the above `Article` tags are now type-safe! Thanks to Swift’s type inference capabilities, it’s also possible to implement an `Taggable` type’s `tags` simply by using `Tags` as its type:
+You can also use `Tags` type alias as type:
 
 ```swift
-struct Article: Taggable {
+struct Model: Taggable {
     let tags: Tags
-    let title: String
 }
 ```
 
-The `Tags` type alias is automatically added for all `Taggable` types, which also makes it possible to refer to `[Tag<Article>]` as `Article.Tags`.
+You can also refer to `[Tag<Model>]` as `Model.Tags`.
 
-## Customizing the raw type
+### The RAW Type
 
-`Tag` values are backed by strings by default, but that can easily be customized by giving an `Taggable` type a `RawTag`, but must be at least `Hashable`:
+A `Tag` is a String by default, but you can customize it with any `Hashable` type:
 
 ```swift
-struct Article: Taggable {
-    typealias RawTag = UUID
-
+struct IntModel: Taggable {
+    typealias RawTag = Int
     let tags: Tags
-    let title: String
 }
 ```
 
-The above `Article` tags are now backed by a `UUID` instead of a `String`.
+### Initialization
 
-## Conveniences built-in
-
-Even though Tagging is focused on type safety, it still offers several conveniences to help reduce verbosity. For example, if a `Tag` is backed by a raw value type that can be expressed by a `String` literal, so can the tags:
+You can initialize `Tags` with the raw value:
 
 ```swift
-let article = Article(tags: ["foo", "bar"], title: "Example")
-```
-
-The same is also true for tags that are backend by a raw value type that can be expressed by `Int` literals:
-
-```swift
-let article = Article(tags: [7, 9], title: "Example")
+let model = Model(tags: ["foo", "bar"])
+let intModel = IntModel(tags: [7, 9])
 ```
 
 `Tag` also becomes `Codable`, `Hashable` and `Equatable` whenever its raw value type conforms to one of those protocols.
-
-## Type safety
-
-So how exactly does Tagging make tags more type-safe? First, when using Tagging, it no longer becomes possible to accidentally pass a tag for one type to an API that accepts an tag for another type. For example, this code won't compile when using Tagging:
-
-```swift
-articleManager.articles(withTags: user.tags)
-```
-
-The compiler will give us an error above, since we're trying to pass an `[Tag<User>]` value to a method that accepts an `[Tag<Article>]` - giving us much stronger type safety than when using plain values, like `String` or `Int`, as tag types.
-
-Tagging also makes it impossible to accidentally declare `tags` properties of the wrong type. So the following won't compile either:
-
-```swift
-struct User: Tagging {
-    let tags: [Tag<Article>]
-}
-```
-
-The reason the above code will fail to compile is because `Taggable` requires types conforming to it to declare tags that are bound to the same type as the conformer, again providing an extra level of type safety.
 
 ### Finding most or least used tags
 
@@ -128,28 +100,27 @@ taggableCollection.tagged(with: ["foo", "bar"], match: .none)
 taggableCollection.tagged(with: taggable.tags, match: .none)
 ```
 
-## Installation
+## 📲 Installation
 
-Since Tagging is implemented within a [single file](https://github.com/alexruperez/Tagging/blob/master/Sources/Tagging/Tagging.swift)!, the easiest way to use it is to simply drag and drop it into your Xcode project.
+Drag and drop [Tagging.swift](https://github.com/alexruperez/Tagging/blob/master/Sources/Tagging/Tagging.swift) into your Xcode project.
 
-But if you wish to use a dependency manager, you can use the [Swift Package Manager](https://github.com/apple/swift-package-manager) by declaring Tagging as a dependency in your `Package.swift` file:
+#### Or install it with [Swift Package Manager](https://github.com/apple/swift-package-manager/tree/master/Documentation):
 
 ```swift
-.package(url: "https://github.com/alexruperez/Tagging", from: "0.1.0")
+dependencies: [
+    .package(url: "https://github.com/alexruperez/Tagging", from: "0.1.0")
+]
 ```
 
-*For more information, see [the Swift Package Manager documentation](https://github.com/apple/swift-package-manager/tree/master/Documentation).*
+## ❤️ Etc.
 
-## Contributions & support
+* Contributions are very welcome.
+* Attribution is appreciated (let's spread the word!), but not mandatory.
 
-Tagging is developed completely in the open, and your contributions are more than welcome.
+## 👨‍💻 Authors
 
-Before you start using Tagging in any of your projects, it’s highly recommended that you spend a few minutes familiarizing yourself with its documentation and internal implementation (it all fits [in a single file](https://github.com/alexruperez/Tagging/blob/master/Sources/Tagging/Tagging.swift)!), so that you’ll be ready to tackle any issues or edge cases that you might encounter.
+[JohnSundell](https://github.com/JohnSundell) & [alexruperez](https://github.com/alexruperez)
 
-To learn more about the principles used to implement Tagging, check out *["Type-safe identifiers in Swift"](https://www.swiftbysundell.com/posts/type-safe-identifiers-in-swift)* on [Swift by Sundell](https://www.swiftbysundell.com).
+## 👮‍♂️ License
 
-This project does not come with GitHub Issues-based support, and users are instead encouraged to become active participants in its continued development — by fixing any bugs that they encounter, or improving the documentation wherever it’s found to be lacking.
-
-If you wish to make a change, [open a Pull Request](https://github.com/alexruperez/Tagging/pull/new) — even if it just contains a draft of the changes you’re planning, or a test that reproduces an issue — and we can discuss it further from there.
-
-Hope you’ll enjoy using **Tagging**! 😀
+Tagging & Identity are available under the MIT license. See the LICENSE file for more info.

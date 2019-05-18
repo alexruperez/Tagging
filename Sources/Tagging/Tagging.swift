@@ -1,39 +1,37 @@
 /**
  *  Tagging
- *  Copyright (c) alexruperez 2019
+ *  Copyright (c) John Sundell & alexruperez 2019
  *  Licensed under the MIT license (see LICENSE file)
  */
 
 import Foundation
 
-// MARK: - Core API
+// MARK: - Taggable
 
-/// Protocol used to mark a given type as being taggable, meaning
-/// that it has type-safe tags, backed by a raw value, which
-/// defaults to String.
+/// Taggable Protocol, RawTag type defaults to String.
 public protocol Taggable {
-    /// The backing raw type of this type's tags.
+    /// Tags type, defaults to String.
     associatedtype RawTag: Hashable = String
-    /// Shorthand type alias for this type's tags.
+    /// Tags type alias.
     typealias Tags = [Tag<Self>]
-    /// The tags of this instance.
+    /// Tags of this instance.
     var tags: Tags { get }
 }
 
-/// A type-safe tag for a given `Value`, backed by a raw value.
-/// When backed by a `Codable` type, `Tag` also becomes codable,
-/// and will be encoded into a single value according to its raw value.
+// MARK: - Tag
+
+/// Type-safe tag.
 public struct Tag<Value: Taggable> {
-    /// The raw value that is backing this tag.
+    /// Tag raw value.
     public let rawValue: Value.RawTag
 
-    /// Initialize an instance with a raw value.
+    /// Initializer with a raw value.
     public init(rawValue: Value.RawTag) {
         self.rawValue = rawValue
     }
 }
 
-// MARK: - Integer literal support
+// MARK: - Integer literal
 
 extension Tag: ExpressibleByIntegerLiteral
 where Value.RawTag: ExpressibleByIntegerLiteral {
@@ -42,7 +40,7 @@ where Value.RawTag: ExpressibleByIntegerLiteral {
     }
 }
 
-// MARK: - String literal support
+// MARK: - String literal
 
 extension Tag: ExpressibleByUnicodeScalarLiteral
 where Value.RawTag: ExpressibleByUnicodeScalarLiteral {
@@ -65,12 +63,12 @@ where Value.RawTag: ExpressibleByStringLiteral {
     }
 }
 
-// MARK: - Compiler-generated protocol support
+// MARK: - Equatable && Hashable
 
 extension Tag: Equatable where Value.RawTag: Equatable {}
 extension Tag: Hashable where Value.RawTag: Hashable {}
 
-// MARK: - Codable support
+// MARK: - Codable
 
 extension Tag: Codable where Value.RawTag: Codable {
     public init(from decoder: Decoder) throws {

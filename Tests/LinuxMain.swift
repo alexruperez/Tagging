@@ -1,11 +1,11 @@
 /**
  *  Tagging
- *  Copyright (c) alexruperez 2019
+ *  Copyright (c) John Sundell & alexruperez 2019
  *  Licensed under the MIT license (see LICENSE file)
  */
 
 import XCTest
-@testable import TaggingTests
+import TaggingTests
 
 var tests = [XCTestCaseEntry]()
 tests += TaggableTests.allTests()
