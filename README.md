@@ -4,9 +4,10 @@
 [![Swift Package Manager Compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
 
 **Tagging** is a library that makes it easy to create *type-safe tags* in Swift.
+
 Categorization is sometimes necessary in our models, so the compiler should be used to help us avoid mistakes.
 
-This library extends [JohnSundell](https://github.com/JohnSundell)/[🆔 Identity](https://github.com/JohnSundell/Identity) and is inspired by [mbleigh](https://github.com/mbleigh)/[acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on).
+This library extends [JohnSundell](https://github.com/JohnSundell)/[Identity](https://github.com/JohnSundell/Identity) and is inspired by [mbleigh](https://github.com/mbleigh)/[acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on).
 
 ## 🐒 Usage
 
@@ -32,7 +33,7 @@ You can also refer to `[Tag<Model>]` as `Model.Tags`.
 
 ### The RAW Type
 
-A `Tag` is a String by default, but that can customize it with any `Hashable` type:
+A `Tag` is a String by default, but you can customize it with any `Hashable` type:
 
 ```swift
 struct IntModel: Taggable {
@@ -101,7 +102,7 @@ taggableCollection.tagged(with: taggable.tags, match: .none)
 
 ## 📲 Installation
 
-Drag and drop [Tagging.swift](https://github.com/alexruperez/Tagging/blob/master/Tagging/Tagging.swift) into your Xcode project.
+Drag and drop [Tagging.swift](https://github.com/alexruperez/Tagging/blob/master/Sources/Tagging/Tagging.swift) into your Xcode project.
 
 #### Or install it with [Swift Package Manager](https://github.com/apple/swift-package-manager/tree/master/Documentation):
 
@@ -119,8 +120,9 @@ dependencies: [
 ## 👨‍💻 Authors
 
 [JohnSundell](https://github.com/JohnSundell)
+
 [alexruperez](https://github.com/alexruperez)
 
 ## 👮‍♂️ License
 
-Tagging is available under the MIT license. See the LICENSE file for more info.
+Tagging and Identity are available under the MIT license. See the LICENSE file for more info.
