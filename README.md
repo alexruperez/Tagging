@@ -7,7 +7,7 @@
 
 Categorization is sometimes necessary in our models, so the compiler should be used to help us avoid mistakes.
 
-This library extends [JohnSundell](https://github.com/JohnSundell)/[Identity](https://github.com/JohnSundell/Identity) and is inspired by [mbleigh](https://github.com/mbleigh)/[acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on).
+This library extends [JohnSundell](https://github.com/JohnSundell)/[Identity](https://github.com/JohnSundell/Identity) and is also inspired by [mbleigh](https://github.com/mbleigh)/[acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on).
 
 ## 🐒 Usage
 
@@ -119,10 +119,8 @@ dependencies: [
 
 ## 👨‍💻 Authors
 
-[JohnSundell](https://github.com/JohnSundell)
-
-[alexruperez](https://github.com/alexruperez)
+[JohnSundell](https://github.com/JohnSundell) & [alexruperez](https://github.com/alexruperez)
 
 ## 👮‍♂️ License
 
-Tagging and Identity are available under the MIT license. See the LICENSE file for more info.
+Tagging & Identity are available under the MIT license. See the LICENSE file for more info.
