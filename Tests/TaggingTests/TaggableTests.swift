@@ -1,11 +1,11 @@
 /**
  *  Tagging
- *  Copyright (c) alexruperez 2019
+ *  Copyright (c) John Sundell & alexruperez 2019
  *  Licensed under the MIT license (see LICENSE file)
  */
 
 import XCTest
-@testable import Tagging
+import Tagging
 
 final class TaggableTests: XCTestCase {
 
@@ -57,7 +57,6 @@ final class TaggableTests: XCTestCase {
     func testAllTestsRunOnLinux() {
         verifyAllTestsRunOnLinux()
     }
-
 }
 
 extension TaggableTests: LinuxTestable {
